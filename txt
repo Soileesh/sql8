@@ -1,0 +1,15 @@
+ select first_name,last_name,amount from contract where amount> (select avg(amount) from contract);  
+ 
+ select first_name,last_name,filial_id from contract where amount in (select max(amount) from contract  );
+ 
+ 
+ select*from employees;
+ select*from products;
+ select*from order_items;
+ 
+ select order_items.*,orders.salesman_id,products.product_name,inventories.quantity from orders 
+   inner join order_items on order_items.order_id=orders.order_id 
+   inner join employees on orders.salesman_id=employees.employee_id
+   inner join products on products.product_id=order_items.product_id
+   inner join inventories on inventories.product_id=products.product_id 
+   ;
